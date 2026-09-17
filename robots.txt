@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://00yusuf0912.github.io/nexusultra/sitemap.xml
