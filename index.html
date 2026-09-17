@@ -1,0 +1,1664 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusUltra - Modern Video & Müzik İndirici</title>
+    <meta name="description" content="NexusUltra ile YouTube ve binlerce siteden videoları ve müzikleri en yüksek kalitede indirin. Ücretsiz, hızlı ve güvenilir.">
+    <meta name="keywords" content="video indirici, müzik indirici, youtube indirici, nexusultra, mp3, mp4, 4k video">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-deep: #060312;
+            --bg-color: #0d091e;
+            --panel-bg: rgba(25, 20, 48, 0.6);
+            --panel-border: rgba(255, 110, 199, 0.2);
+            --accent-pink: #ff2a8d;
+            --accent-purple: #9d4edd;
+            --accent-cyan: #00f5d4;
+            --accent-orange: #ff9e00;
+            --text-main: #ffffff;
+            --text-muted: #c4bbf0;
+            --success: #06d6a0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(6, 3, 18, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 110, 199, 0.1);
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            padding: 12px 60px;
+            background: rgba(6, 3, 18, 0.95);
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 42, 141, 0.5);
+        }
+
+        .nav-brand-text {
+            font-size: 1.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange));
+            color: white !important;
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 20px rgba(255, 42, 141, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 42, 141, 0.5);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 26px;
+            height: 2.5px;
+            background: white;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 60px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: -200px;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 42, 141, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -200px;
+            right: -100px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 245, 212, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 245, 212, 0.1);
+            border: 1px solid rgba(0, 245, 212, 0.3);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            width: fit-content;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-badge .dot {
+            width: 7px;
+            height: 7px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--success);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+        }
+
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple), var(--accent-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            max-width: 480px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange));
+            color: white;
+            border: none;
+            padding: 16px 36px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            box-shadow: 0 6px 30px rgba(255, 42, 141, 0.4);
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(255, 42, 141, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.06);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 16px 36px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-cyan);
+            transform: translateY(-3px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 12px;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-pink));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-top: 2px;
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .app-mockup {
+            width: 100%;
+            max-width: 560px;
+            background: var(--bg-color);
+            border: 1px solid var(--panel-border);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 60px rgba(255, 42, 141, 0.1);
+            position: relative;
+        }
+
+        .mockup-titlebar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 18px;
+            background: rgba(14, 10, 28, 0.95);
+            border-bottom: 1px solid rgba(255, 110, 199, 0.1);
+        }
+
+        .mockup-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .mockup-dot.red { background: #ff5f57; }
+        .mockup-dot.yellow { background: #ffbd2e; }
+        .mockup-dot.green { background: #28c840; }
+
+        .mockup-titlebar-text {
+            flex: 1;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .mockup-body {
+            display: grid;
+            grid-template-columns: 70px 1fr;
+            min-height: 300px;
+        }
+
+        .mockup-sidebar {
+            background: rgba(14, 10, 28, 0.98);
+            border-right: 1px solid rgba(255, 110, 199, 0.1);
+            padding: 16px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .mockup-sidebar-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            transition: var(--transition);
+        }
+
+        .mockup-sidebar-icon.active {
+            background: linear-gradient(135deg, rgba(255, 42, 141, 0.25), rgba(157, 78, 221, 0.3));
+            color: var(--accent-pink);
+        }
+
+        .mockup-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .mockup-header {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .mockup-input-row {
+            display: flex;
+            gap: 8px;
+        }
+
+        .mockup-input {
+            flex: 1;
+            background: rgba(15, 11, 32, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px 14px;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+        }
+
+        .mockup-btn {
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange));
+            border: none;
+            border-radius: 10px;
+            padding: 10px 18px;
+            color: white;
+            font-size: 0.72rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .mockup-progress-item {
+            background: rgba(30, 20, 60, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mockup-progress-title {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .mockup-progress-bar {
+            width: 100%;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .mockup-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--success));
+            border-radius: 3px;
+            animation: progressAnim 3s ease-in-out infinite;
+        }
+
+        @keyframes progressAnim {
+            0% { width: 30%; }
+            50% { width: 85%; }
+            100% { width: 30%; }
+        }
+
+        .mockup-progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.62rem;
+            color: var(--text-muted);
+        }
+
+        .float-card {
+            position: absolute;
+            background: rgba(25, 20, 48, 0.95);
+            border: 1px solid rgba(0, 245, 212, 0.3);
+            border-radius: 14px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+            animation: float 4s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .float-card.card-1 {
+            top: -20px;
+            right: -30px;
+            animation-delay: 0s;
+        }
+
+        .float-card.card-2 {
+            bottom: -15px;
+            left: -25px;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .float-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .float-icon.cyan { background: rgba(0, 245, 212, 0.15); color: var(--accent-cyan); }
+        .float-icon.pink { background: rgba(255, 42, 141, 0.15); color: var(--accent-pink); }
+
+        .float-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .float-text strong {
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+
+        .float-text span {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== FEATURES ===== */
+        .features {
+            padding: 100px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(157, 78, 221, 0.1);
+            border: 1px solid rgba(157, 78, 221, 0.3);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: rgba(20, 15, 40, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 32px 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-pink), var(--accent-cyan));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(255, 110, 199, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .feature-icon.pink { background: rgba(255, 42, 141, 0.12); color: var(--accent-pink); }
+        .feature-icon.cyan { background: rgba(0, 245, 212, 0.12); color: var(--accent-cyan); }
+        .feature-icon.purple { background: rgba(157, 78, 221, 0.12); color: var(--accent-purple); }
+        .feature-icon.orange { background: rgba(255, 158, 0, 0.12); color: var(--accent-orange); }
+        .feature-icon.green { background: rgba(6, 214, 160, 0.12); color: var(--success); }
+
+        .feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .feature-card p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+        }
+
+        /* ===== HOW IT WORKS ===== */
+        .how-it-works {
+            padding: 100px 60px;
+            background: linear-gradient(180deg, transparent 0%, rgba(25, 20, 48, 0.3) 50%, transparent 100%);
+        }
+
+        .steps-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+        }
+
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            left: 32px;
+            top: 40px;
+            bottom: 40px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-pink), var(--accent-purple), var(--accent-cyan));
+            opacity: 0.3;
+        }
+
+        .step-item {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+            padding: 30px 0;
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
+            min-width: 64px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-number.pink { background: rgba(255, 42, 141, 0.15); color: var(--accent-pink); border: 1px solid rgba(255, 42, 141, 0.3); }
+        .step-number.purple { background: rgba(157, 78, 221, 0.15); color: var(--accent-purple); border: 1px solid rgba(157, 78, 221, 0.3); }
+        .step-number.cyan { background: rgba(0, 245, 212, 0.15); color: var(--accent-cyan); border: 1px solid rgba(0, 245, 212, 0.3); }
+
+        .step-content h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .step-content code {
+            background: rgba(0, 245, 212, 0.1);
+            border: 1px solid rgba(0, 245, 212, 0.2);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            color: var(--accent-cyan);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* ===== PLATFORMS ===== */
+        .platforms {
+            padding: 100px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .platforms-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .platform-card {
+            background: rgba(20, 15, 40, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: var(--transition);
+        }
+
+        .platform-card:hover {
+            border-color: rgba(255, 42, 141, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .platform-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .platform-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .platform-sub {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+        }
+
+        /* ===== TECH SPECS ===== */
+        .specs {
+            padding: 100px 60px;
+            background: linear-gradient(180deg, transparent 0%, rgba(25, 20, 48, 0.3) 50%, transparent 100%);
+        }
+
+        .specs-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .spec-row {
+            background: rgba(20, 15, 40, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .spec-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(157, 78, 221, 0.1);
+            color: var(--accent-purple);
+        }
+
+        .spec-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-value {
+            font-size: 0.92rem;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        /* ===== DOWNLOAD CTA ===== */
+        .download-section {
+            padding: 100px 60px;
+            text-align: center;
+        }
+
+        .download-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(255, 42, 141, 0.1), rgba(157, 78, 221, 0.1), rgba(0, 245, 212, 0.1));
+            border: 1px solid rgba(255, 110, 199, 0.2);
+            border-radius: 28px;
+            padding: 60px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-box::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 42, 141, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .download-box::after {
+            content: '';
+            position: absolute;
+            bottom: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 245, 212, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .download-box h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            position: relative;
+        }
+
+        .download-box p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .download-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 28px;
+            position: relative;
+        }
+
+        .download-info-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .download-info-item i {
+            color: var(--accent-cyan);
+        }
+
+        /* ===== FAQ ===== */
+        .faq {
+            padding: 100px 60px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 24px 0;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            gap: 16px;
+        }
+
+        .faq-question h3 {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .faq-toggle {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-cyan);
+            transition: var(--transition);
+            min-width: 32px;
+        }
+
+        .faq-item.open .faq-toggle {
+            transform: rotate(45deg);
+            background: rgba(255, 42, 141, 0.15);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+            padding-top: 14px;
+        }
+
+        .faq-answer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 50px 60px 30px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.7;
+            margin-top: 14px;
+            max-width: 280px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 4px 0;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .footer-bottom span {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-socials a:hover {
+            background: rgba(255, 42, 141, 0.2);
+            border-color: var(--accent-pink);
+            color: white;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+                text-align: center;
+            }
+
+            .hero-content {
+                align-items: center;
+            }
+
+            .hero-desc {
+                margin: 0 auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .platforms-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 14px 24px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(6, 3, 18, 0.98);
+                flex-direction: column;
+                padding: 24px;
+                gap: 18px;
+                border-bottom: 1px solid rgba(255, 110, 199, 0.1);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 100px 24px 60px;
+            }
+
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .features, .platforms, .specs, .download-section, .faq, .how-it-works {
+                padding: 60px 24px;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .platforms-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer {
+                padding: 40px 24px 24px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 14px;
+                text-align: center;
+            }
+
+            .float-card {
+                display: none;
+            }
+
+            .download-box {
+                padding: 40px 24px;
+            }
+
+            .download-box h2 {
+                font-size: 1.8rem;
+            }
+
+            .download-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-brand">
+            <div class="nav-logo"><i class="fa-solid fa-bolt-lightning"></i></div>
+            <span class="nav-brand-text">NexusUltra</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#features">Özellikler</a></li>
+            <li><a href="#how-it-works">Nasil Calisir</a></li>
+            <li><a href="#platforms">Platformlar</a></li>
+            <li><a href="#specs">Teknik Detaylar</a></li>
+            <li><a href="#faq">SSS</a></li>
+            <li><a href="NexusUltraSetup.exe" class="nav-cta" download><i class="fa-solid fa-download"></i> Indir</a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Windows 10/11 icin optimize edildi
+                </div>
+                <h1>
+                    Neon Hizinda<br>
+                    <span class="gradient-text">Video & Muzik</span><br>
+                    Indirici
+                </h1>
+                <p class="hero-desc">
+                    YouTube, TikTok, Instagram ve binlerce siteden videolari ve muzikleri en yuksek kalitede indirin.
+                    Modern arayuz, guclu motor, sinirsiz indirme.
+                </p>
+                <div class="hero-buttons">
+                    <a href="NexusUltraSetup.exe" class="btn-primary" download>
+                        <i class="fa-solid fa-download"></i> Simdi Indir
+                    </a>
+                    <a href="#how-it-works" class="btn-secondary">
+                        <i class="fa-solid fa-circle-play"></i> Nasil Calisir?
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">1000+</span>
+                        <span class="stat-label">Desteklenen Site</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">4K</span>
+                        <span class="stat-label">Maks. Cozunurluk</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">320kbps</span>
+                        <span class="stat-label">Muzik Kalitesi</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="float-card card-1">
+                    <div class="float-icon cyan"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="float-text">
+                        <strong>Guvenli Indirme</strong>
+                        <span>Reklam yok, virussuz</span>
+                    </div>
+                </div>
+                <div class="float-card card-2">
+                    <div class="float-icon pink"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="float-text">
+                        <strong>Hizli Motor</strong>
+                        <span>yt-dlp + ffmpeg</span>
+                    </div>
+                </div>
+                <div class="app-mockup">
+                    <div class="mockup-titlebar">
+                        <div class="mockup-dot red"></div>
+                        <div class="mockup-dot yellow"></div>
+                        <div class="mockup-dot green"></div>
+                        <span class="mockup-titlebar-text">NexusUltra v1.0.0</span>
+                    </div>
+                    <div class="mockup-body">
+                        <div class="mockup-sidebar">
+                            <div class="mockup-sidebar-icon active"><i class="fa-solid fa-bolt"></i></div>
+                            <div class="mockup-sidebar-icon"><i class="fa-solid fa-list-check"></i></div>
+                            <div class="mockup-sidebar-icon"><i class="fa-solid fa-folder-open"></i></div>
+                            <div class="mockup-sidebar-icon"><i class="fa-solid fa-sliders"></i></div>
+                        </div>
+                        <div class="mockup-content">
+                            <div class="mockup-header">Medya Indirici</div>
+                            <div class="mockup-input-row">
+                                <div class="mockup-input">YouTube video baglantisi yapistirin...</div>
+                                <div class="mockup-btn">Indirmeyi Baslat</div>
+                            </div>
+                            <div class="mockup-progress-item">
+                                <div class="mockup-progress-title">4K Ultra HD - Neon Parcasi.mp4</div>
+                                <div class="mockup-progress-bar">
+                                    <div class="mockup-progress-fill"></div>
+                                </div>
+                                <div class="mockup-progress-meta">
+                                    <span>%67 Indiriliyor</span>
+                                    <span style="color: var(--accent-cyan);">12.4 MB/s</span>
+                                </div>
+                            </div>
+                            <div class="mockup-progress-item">
+                                <div class="mockup-progress-title">Cyberpunk Beats - 320kbps.mp3</div>
+                                <div class="mockup-progress-bar">
+                                    <div class="mockup-progress-fill" style="width: 100%; background: linear-gradient(90deg, var(--accent-cyan), var(--success)); animation: none;"></div>
+                                </div>
+                                <div class="mockup-progress-meta">
+                                    <span style="color: var(--success);">Tamamlandi</span>
+                                    <span style="color: var(--success);">Bitti</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <div class="section-tag"><i class="fa-solid fa-star"></i> Ozellikler</div>
+            <h2>Neden NexusUltra?</h2>
+            <p>Modern teknoloji ile guclendirilmis, kullanicilarin ihtiyacina yonelik gelistirilmis ozellikler.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon pink"><i class="fa-solid fa-video"></i></div>
+                <h3>4K Video Indirme</h3>
+                <p>360p'den 4K Ultra HD'ye kadar istediginiz cozunurlukte video indirin. Otomatik ses ve video birlestirme.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon cyan"><i class="fa-solid fa-music"></i></div>
+                <h3>MP3 & FLAC Muzik</h3>
+                <p>Muzikleri 320kbps MP3 veya kayipsiz FLAC formatinda indirin. Album kapaklari ve meta verileri dahil.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon purple"><i class="fa-solid fa-layer-group"></i></div>
+                <h3>Toplu Indirme</h3>
+                <p>Oynatma listelerini ve kanallari tek seferde indirin. Kuyruk yonetimi ile sirali islem.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon orange"><i class="fa-solid fa-gauge-high"></i></div>
+                <h3>Hizli & Verimli</h3>
+                <p>yt-dlp'nin guclu motoruyla en hizli indirme hizlarina ulasin. Bant genisligini akillica yonetir.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon green"><i class="fa-solid fa-palette"></i></div>
+                <h3>Canli Tema Degisimi</h3>
+                <p>Cyberpunk Mor, Zumrut Yesil veya Gun Batimi tema renklerinden birini secin. Anlik gecis efektleri.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon pink"><i class="fa-solid fa-arrows-rotate"></i></div>
+                <h3>Otomatik Guncelleme</h3>
+                <p>Ilk acilista yt-dlp motoru otomatik guncellenir. Her zaman en son destekler ve hiz duzeltmeleri.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <div class="section-tag"><i class="fa-solid fa-gears"></i> Nasil Calisir</div>
+            <h2>3 Adimda Indirme</h2>
+            <p>Karmaşık ayarlar yok. Tek yapmaniz gereken linki yapistirip butona basmak.</p>
+        </div>
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-number pink">1</div>
+                <div class="step-content">
+                    <h3>Baglantiyi Yapistirin</h3>
+                    <p>YouTube, TikTok, Instagram veya diger desteklenen bir siteden video/muzik baglantisini kopyalayin ve uygulama icindeki alana yapistirin. Oynatma listesi baglantilari da desteklenir.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number purple">2</div>
+                <div class="step-content">
+                    <h3>Format ve Kaliteyi Secin</h3>
+                    <p>Video mu muzik mi? 4K mi 720p mi? <code>MP3 320kbps</code>, <code>FLAC</code>, <code>MP4 4K</code> gibi seceneklerden istediginizi belirleyin. Tek tikla format degisimi.</p>
+                </div>
+            </div>
+            <div class="step-item">
+                <div class="step-number cyan">3</div>
+                <div class="step-content">
+                    <h3>Indirmeyi Baslatin</h3>
+                    <p>"Indirmeyi Baslat" butonuna tiklayin. Canli ilerleme cubugu ile yuzde ve hiz bilgisini takip edin. Dosya tamamlandiginda otomatik olarak secilen klasore kaydedilir.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLATFORMS -->
+    <section class="platforms" id="platforms">
+        <div class="section-header">
+            <div class="section-tag"><i class="fa-solid fa-globe"></i> Platformlar</div>
+            <h2>Binlerce Site Destekleniyor</h2>
+            <p>yt-dlp'nin gucuyle dunyanin en populer icerik platformlarindan indirme yapin.</p>
+        </div>
+        <div class="platforms-grid">
+            <div class="platform-card">
+                <div class="platform-icon" style="color: #ff0000;"><i class="fa-brands fa-youtube"></i></div>
+                <div>
+                    <div class="platform-name">YouTube</div>
+                    <div class="platform-sub">Video, Muzik, Oynatma Listesi</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon" style="color: #ff0050;"><i class="fa-brands fa-tiktok"></i></div>
+                <div>
+                    <div class="platform-name">TikTok</div>
+                    <div class="platform-sub">Video, Ses, Slideshow</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon" style="color: #e4405f;"><i class="fa-brands fa-instagram"></i></div>
+                <div>
+                    <div class="platform-name">Instagram</div>
+                    <div class="platform-sub">Reels, Story, Post</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon" style="color: #9146ff;"><i class="fa-brands fa-twitch"></i></div>
+                <div>
+                    <div class="platform-name">Twitch</div>
+                    <div class="platform-sub">Yayin, Klip, VOD</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon" style="color: #1da1f2;"><i class="fa-brands fa-x-twitter"></i></div>
+                <div>
+                    <div class="platform-name">Twitter / X</div>
+                    <div class="platform-sub">Video, GIF, Ses</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon" style="color: #ff5500;"><i class="fa-brands fa-soundcloud"></i></div>
+                <div>
+                    <div class="platform-name">SoundCloud</div>
+                    <div class="platform-sub">Muzik, Podcast</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon" style="color: #1ed760;"><i class="fa-brands fa-spotify"></i></div>
+                <div>
+                    <div class="platform-name">Spotify</div>
+                    <div class="platform-sub">Linkler desteklenir</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon" style="color: #1ab7ea;"><i class="fa-brands fa-vimeo"></i></div>
+                <div>
+                    <div class="platform-name">Vimeo</div>
+                    <div class="platform-sub">Video, Film</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH SPECS -->
+    <section class="specs" id="specs">
+        <div class="section-header">
+            <div class="section-tag"><i class="fa-solid fa-microchip"></i> Teknik Detaylar</div>
+            <h2>Alt Yapinin Guveni</h2>
+            <p>Isletim sistemi ve donanim gereksinimleri hakkinda bilgi edinin.</p>
+        </div>
+        <div class="specs-grid">
+            <div class="spec-row">
+                <div class="spec-icon"><i class="fa-brands fa-windows"></i></div>
+                <div>
+                    <div class="spec-label">Isletim Sistemi</div>
+                    <div class="spec-value">Windows 10 / 11 (64-bit)</div>
+                </div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-icon"><i class="fa-solid fa-code"></i></div>
+                <div>
+                    <div class="spec-label">Calisma Ortami</div>
+                    <div class="spec-value">.NET 8 Desktop Runtime</div>
+                </div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-icon"><i class="fa-brands fa-edge"></i></div>
+                <div>
+                    <div class="spec-label">Arayuz Motoru</div>
+                    <div class="spec-value">Microsoft Edge WebView2</div>
+                </div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-icon"><i class="fa-solid fa-download"></i></div>
+                <div>
+                    <div class="spec-label">Indirme Motoru</div>
+                    <div class="spec-value">yt-dlp (Acik Kaynak)</div>
+                </div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-icon"><i class="fa-solid fa-film"></i></div>
+                <div>
+                    <div class="spec-label">Video Islemci</div>
+                    <div class="spec-value">ffmpeg (Birlestirme)</div>
+                </div>
+            </div>
+            <div class="spec-row">
+                <div class="spec-icon"><i class="fa-solid fa-hard-drive"></i></div>
+                <div>
+                    <div class="spec-label">Kurulum Boyutu</div>
+                    <div class="spec-value">~80 MB (tam paket)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOWNLOAD CTA -->
+    <section class="download-section" id="download">
+        <div class="download-box">
+            <h2>Hemen Indirmeye Baslayin</h2>
+            <p>NexusUltra ucretsizdir ve masaustunuze tek tikla kurulur. Hicbir kayit veya abonelik gerektirmez.</p>
+            <a href="NexusUltraSetup.exe" class="btn-primary" download style="display: inline-flex; margin: 0 auto; position: relative;">
+                <i class="fa-solid fa-download"></i> NexusUltraSetup.exe Indir (48 MB)
+            </a>
+            <div class="download-info">
+                <div class="download-info-item"><i class="fa-solid fa-check-circle"></i> Ucretsiz ve acik kaynak</div>
+                <div class="download-info-item"><i class="fa-solid fa-check-circle"></i> Reklam yok, virussuz</div>
+                <div class="download-info-item"><i class="fa-solid fa-check-circle"></i> Windows 10/11</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="section-header">
+            <div class="section-tag"><i class="fa-solid fa-circle-question"></i> SSS</div>
+            <h2>Sikca Sorulan Sorular</h2>
+        </div>
+
+        <div class="faq-item open">
+            <div class="faq-question">
+                <h3>NexusUltra ucretsiz mi?</h3>
+                <div class="faq-toggle"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-answer">
+                <p>Evet, NexusUltra tamamen ucretsizdir. Hicbir abonelik ucreti, gizlicret veya premium versiyonu yoktur. Acik kaynak olarak gelistirilmistir.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Hangi siteler destekleniyor?</h3>
+                <div class="faq-toggle"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-answer">
+                <p>yt-dlp motoru sayesinde YouTube, TikTok, Instagram, Twitter/X, Twitch, SoundCloud, Vimeo ve 1000'den fazla site desteklenmektedir.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>En yuksek kalite secenegi nedir?</h3>
+                <div class="faq-toggle"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-answer">
+                <p>4K Ultra HD (2160p) video ve 320kbps MP3 / FLAC kayipsiz muzik indirme desteklenmektedir. Mevcut kalite orijinal icerige baglidir.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Windows disinda calisir mi?</h3>
+                <div class="faq-toggle"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-answer">
+                <p>Su an icin yalnizca Windows 10/11 (64-bit) desteklenmektedir. Uygulama WPF uzerine kuruludur ve .NET 8 gerektirir.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Kurulum sirasinda .NET 8 hatasi aliyorum, ne yapmaliyim?</h3>
+                <div class="faq-toggle"><i class="fa-solid fa-plus"></i></div>
+            </div>
+            <div class="faq-answer">
+                <p>Kurulum sihirbazi otomatik olarak .NET 8'i indirip kuracaktir. Eger otomatik kurulum basarisiz olursa, https://dotnet.microsoft.com/download/dotnet/8.0 adresinden elle kurabilirsiniz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="#" class="nav-brand">
+                    <div class="nav-logo"><i class="fa-solid fa-bolt-lightning"></i></div>
+                    <span class="nav-brand-text">NexusUltra</span>
+                </a>
+                <p>Windows icin modern, hizli ve guvenilir video & muzik indirici. Turkiye'den sevgiyle yapildi.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Urun</h4>
+                <a href="#features">Ozellikler</a>
+                <a href="#how-it-works">Nasil Calisir</a>
+                <a href="#download">Indir</a>
+                <a href="#specs">Teknik Detaylar</a>
+            </div>
+            <div class="footer-col">
+                <h4>Destek</h4>
+                <a href="#faq">SSS</a>
+                <a href="#">Sorun Bildir</a>
+                <a href="#">Iletisim</a>
+            </div>
+            <div class="footer-col">
+                <h4>Yasal</h4>
+                <a href="#">Gizlilik Politikasi</a>
+                <a href="#">Kullanim Kosullari</a>
+                <a href="#">Lisans</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 NexusUltra. Tum haklari saklidir.</span>
+            <div class="footer-socials">
+                <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        // Close mobile menu on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const wasOpen = item.classList.contains('open');
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                if (!wasOpen) item.classList.add('open');
+            });
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .step-item, .platform-card, .spec-row, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
