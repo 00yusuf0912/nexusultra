@@ -1097,7 +1097,7 @@
             color: white;
         }
 
-        /* ===== RESPONSIVE ===== */
+        /* Responsive Breakpoints */
         @media (max-width: 1024px) {
             .hero-grid {
                 grid-template-columns: 1fr;
@@ -1109,8 +1109,8 @@
                 align-items: center;
             }
 
-            .hero-desc {
-                margin: 0 auto;
+            .hero h1 {
+                font-size: 3rem;
             }
 
             .hero-buttons {
@@ -1125,10 +1125,6 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .platforms-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
@@ -1136,24 +1132,11 @@
 
         @media (max-width: 768px) {
             .navbar {
-                padding: 14px 24px;
+                padding: 16px 24px;
             }
 
             .nav-links {
                 display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: rgba(6, 3, 18, 0.98);
-                flex-direction: column;
-                padding: 24px;
-                gap: 18px;
-                border-bottom: 1px solid rgba(255, 110, 199, 0.1);
-            }
-
-            .nav-links.open {
-                display: flex;
             }
 
             .hamburger {
@@ -1168,19 +1151,21 @@
                 font-size: 2.4rem;
             }
 
-            .features, .platforms, .specs, .download-section, .faq, .how-it-works {
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .features, .how-it-works, .platforms, .specs, .download-section, .faq {
                 padding: 60px 24px;
             }
 
-            .section-header h2 {
-                font-size: 2rem;
-            }
-
             .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .platforms-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1188,37 +1173,18 @@
                 grid-template-columns: 1fr;
             }
 
-            .footer {
-                padding: 40px 24px 24px;
-            }
-
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 28px;
             }
 
             .footer-bottom {
                 flex-direction: column;
-                gap: 14px;
+                gap: 16px;
                 text-align: center;
             }
 
             .float-card {
                 display: none;
-            }
-
-            .download-box {
-                padding: 40px 24px;
-            }
-
-            .download-box h2 {
-                font-size: 1.8rem;
-            }
-
-            .download-info {
-                flex-direction: column;
-                align-items: center;
-                gap: 12px;
             }
         }
     </style>
@@ -1229,45 +1195,41 @@
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <a href="#" class="nav-brand">
-            <div class="nav-logo"><i class="fa-solid fa-bolt-lightning"></i></div>
+            <div class="nav-logo">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
             <span class="nav-brand-text">NexusUltra</span>
         </a>
-        <ul class="nav-links" id="navLinks">
+        <ul class="nav-links">
             <li><a href="#features">Özellikler</a></li>
-            <li><a href="#how-it-works">Nasil Calisir</a></li>
-            <li><a href="#platforms">Platformlar</a></li>
+            <li><a href="#how-it-works">Nasıl Çalışır?</a></li>
+            <li><a href="#platforms">Desteklenen Siteler</a></li>
             <li><a href="#specs">Teknik Detaylar</a></li>
             <li><a href="#faq">SSS</a></li>
-            <li><a href="https://github.com/00yusuf0912/nexusultra/releases/download/v1.1.2/NexusUltraSetup.exe" class="nav-cta" download><i class="fa-solid fa-download"></i> Indir</a></li>
+            <li><a href="https://github.com/00yusuf0912/nexusultra/releases/download/v1.1.2/NexusUltraSetup.exe" class="nav-cta"><i class="fa-solid fa-download"></i> İndir</a></li>
         </ul>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
+        <button class="hamburger" aria-label="Menü">
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
     </nav>
 
-    <!-- HERO -->
-    <section class="hero" id="hero">
+    <!-- HERO SECTION -->
+    <section class="hero">
         <div class="hero-grid">
             <div class="hero-content">
                 <div class="hero-badge">
-                    <span class="dot"></span>
-                    Windows 10/11 icin optimize edildi
+                    <span class="dot"></span> Versiyon 1.1.2 Yayında
                 </div>
-                <h1>
-                    Neon Hizinda<br>
-                    <span class="gradient-text">Video & Muzik</span><br>
-                    Indirici
-                </h1>
-                <p class="hero-desc">
-                    YouTube, Facebook, TikTok, Instagram ve binlerce siteden videolari ve muzikleri en yuksek kalitede indirin.
-                    Modern arayuz, guclu motor, sinirsiz indirme.
-                </p>
+                <h1>Medyayı <br><span class="gradient-text">Ultra Hızlı</span> İndirin</h1>
+                <p class="hero-desc">YouTube, TikTok, Instagram, Facebook ve 1000'den fazla platformdan video ve müzikleri tek tıkla yüksek kalitede bilgisayarınıza kaydedin.</p>
                 <div class="hero-buttons">
-                    <a href="https://github.com/00yusuf0912/nexusultra/releases/download/v1.1.2/NexusUltraSetup.exe" class="btn-primary" download>
-                        <i class="fa-solid fa-download"></i> Simdi Indir
+                    <a href="https://github.com/00yusuf0912/nexusultra/releases/download/v1.1.2/NexusUltraSetup.exe" class="btn-primary">
+                        <i class="fa-solid fa-download"></i> Hemen İndir (v1.1.2)
                     </a>
-                    <a href="#how-it-works" class="btn-secondary">
-                        <i class="fa-solid fa-circle-play"></i> Nasil Calisir?
+                    <a href="#features" class="btn-secondary">
+                        <i class="fa-solid fa-compass"></i> Keşfet
                     </a>
                 </div>
                 <div class="hero-stats">
@@ -1276,115 +1238,107 @@
                         <span class="stat-label">Desteklenen Site</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-value">4K</span>
-                        <span class="stat-label">Maks. Cozunurluk</span>
+                        <span class="stat-value">4K UHD</span>
+                        <span class="stat-label">Maksimum Kalite</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-value">320kbps</span>
-                        <span class="stat-label">Muzik Kalitesi</span>
+                        <span class="stat-value">%100</span>
+                        <span class="stat-label">Ücretsiz & Güvenli</span>
                     </div>
                 </div>
             </div>
 
             <div class="hero-visual">
-                <div class="float-card card-1">
-                    <div class="float-icon cyan"><i class="fa-solid fa-shield-halved"></i></div>
-                    <div class="float-text">
-                        <strong>Guvenli Indirme</strong>
-                        <span>Reklam yok, virussuz</span>
-                    </div>
-                </div>
-                <div class="float-card card-2">
-                    <div class="float-icon pink"><i class="fa-solid fa-bolt"></i></div>
-                    <div class="float-text">
-                        <strong>Hizli Motor</strong>
-                        <span>yt-dlp + ffmpeg</span>
-                    </div>
-                </div>
                 <div class="app-mockup">
                     <div class="mockup-titlebar">
-                        <div class="mockup-dot red"></div>
-                        <div class="mockup-dot yellow"></div>
-                        <div class="mockup-dot green"></div>
+                        <span class="mockup-dot red"></span>
+                        <span class="mockup-dot yellow"></span>
+                        <span class="mockup-dot green"></span>
                         <span class="mockup-titlebar-text">NexusUltra v1.1.2</span>
                     </div>
                     <div class="mockup-body">
                         <div class="mockup-sidebar">
-                            <div class="mockup-sidebar-icon active"><i class="fa-solid fa-bolt"></i></div>
+                            <div class="mockup-sidebar-icon active"><i class="fa-solid fa-download"></i></div>
                             <div class="mockup-sidebar-icon"><i class="fa-solid fa-list-check"></i></div>
-                            <div class="mockup-sidebar-icon"><i class="fa-solid fa-folder-open"></i></div>
-                            <div class="mockup-sidebar-icon"><i class="fa-solid fa-sliders"></i></div>
+                            <div class="mockup-sidebar-icon"><i class="fa-solid fa-gear"></i></div>
                         </div>
                         <div class="mockup-content">
-                            <div class="mockup-header">Medya Indirici</div>
+                            <div class="mockup-header">Media Downloader</div>
                             <div class="mockup-input-row">
-                                <div class="mockup-input">YouTube veya Facebook video baglantisi yapistirin...</div>
-                                <div class="mockup-btn">Indirmeyi Baslat</div>
+                                <div class="mockup-input">https://www.youtube.com/watch?v=...</div>
+                                <button class="mockup-btn">İndir</button>
                             </div>
                             <div class="mockup-progress-item">
-                                <div class="mockup-progress-title">4K Ultra HD - Neon Parcasi.mp4</div>
+                                <div class="mockup-progress-title">Epic Cinematic Trailer (4K 60fps)</div>
                                 <div class="mockup-progress-bar">
                                     <div class="mockup-progress-fill"></div>
                                 </div>
                                 <div class="mockup-progress-meta">
-                                    <span>%67 Indiriliyor</span>
-                                    <span style="color: var(--accent-cyan);">12.4 MB/s</span>
-                                </div>
-                            </div>
-                            <div class="mockup-progress-item">
-                                <div class="mockup-progress-title">Cyberpunk Beats - 320kbps.mp3</div>
-                                <div class="mockup-progress-bar">
-                                    <div class="mockup-progress-fill" style="width: 100%; background: linear-gradient(90deg, var(--accent-cyan), var(--success)); animation: none;"></div>
-                                </div>
-                                <div class="mockup-progress-meta">
-                                    <span style="color: var(--success);">Tamamlandi</span>
-                                    <span style="color: var(--success);">Bitti</span>
+                                    <span>85% - 14.2 MB/s</span>
+                                    <span>00:12 kaldı</span>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="float-card card-1">
+                    <div class="float-icon cyan"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="float-text">
+                        <strong>Maksimum Hız</strong>
+                        <span>Çoklu bağlantı teknolojisi</span>
+                    </div>
+                </div>
+
+                <div class="float-card card-2">
+                    <div class="float-icon pink"><i class="fa-solid fa-music"></i></div>
+                    <div class="float-text">
+                        <strong>320 kbps MP3</strong>
+                        <span>Yüksek kalitede ses dönüştürme</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FEATURES -->
+    <!-- FEATURES SECTION -->
     <section class="features" id="features">
         <div class="section-header">
-            <div class="section-tag"><i class="fa-solid fa-star"></i> Ozellikler</div>
-            <h2>Neden NexusUltra?</h2>
-            <p>Modern teknoloji ile guclendirilmis, kullanicilarin ihtiyacina yonelik gelistirilmis ozellikler.</p>
+            <div class="section-tag"><i class="fa-solid fa-star"></i> Neden NexusUltra?</div>
+            <h2>Sınırları Ortadan Kaldıran Özellikler</h2>
+            <p>İhtiyacınız olan tüm medya indirme ve dönüştürme araçları tek bir modern arayüzde birleşti.</p>
         </div>
+
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon pink"><i class="fa-solid fa-video"></i></div>
-                <h3>4K Video Indirme</h3>
-                <p>360p'den 4K Ultra HD'ye kadar istediginiz cozunurlukte video indirin. Otomatik ses ve video birlestirme.</p>
+                <div class="feature-icon pink"><i class="fa-solid fa-display"></i></div>
+                <h3>4K & 8K Ultra HD Destek</h3>
+                <p>Videoları orijinal kalitelerini kaybetmeden 1080p, 2K, 4K ve hatta 8K çözünürlük seçenekleriyle indirin.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon cyan"><i class="fa-solid fa-music"></i></div>
-                <h3>MP3 & FLAC Muzik</h3>
-                <p>Muzikleri 320kbps MP3 veya kayipsiz FLAC formatinda indirin. Album kapaklari ve meta verileri dahil.</p>
+                <h3>Yüksek Kalite MP3 Dönüştürücü</h3>
+                <p>Müzik videolarını anında 320 kbps yüksek kaliteli MP3 veya M4A ses dosyalarına dönüştürün.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon purple"><i class="fa-solid fa-layer-group"></i></div>
-                <h3>Toplu Indirme</h3>
-                <p>Oynatma listelerini ve kanallari tek seferde indirin. Kuyruk yonetimi ile sirali islem.</p>
+                <h3>Oynatma Listesi (Playlist) İndirme</h3>
+                <p>Tek bir bağlantı yapıştırarak tüm YouTube oynatma listelerini veya kanaldaki videoları topluca indirin.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon orange"><i class="fa-solid fa-gauge-high"></i></div>
-                <h3>Hizli & Verimli</h3>
-                <p>yt-dlp'nin guclu motoruyla en hizli indirme hizlarina ulasin. Bant genisligini akillica yonetir.</p>
+                <div class="feature-icon orange"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Ultra Hızlı İndirme Motoru</h3>
+                <p>Gelişmiş motor altyapısı sayesinde internet bant genişliğinizi sonuna kadar kullanarak maksimum hız sağlar.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon green"><i class="fa-solid fa-palette"></i></div>
-                <h3>Canli Tema Degisimi</h3>
-                <p>Cyberpunk Mor, Zumrut Yesil veya Gun Batimi tema renklerinden birini secin. Anlik gecis efektleri.</p>
+                <div class="feature-icon green"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Reklamsız ve Güvenli</h3>
+                <p>Kullanıcı deneyimini bozan reklamlar, pop-up'lar veya gizli yazılımlar içermez. Tamamen temiz ve güvenilirdir.</p>
             </div>
             <div class="feature-card">
-                <div class="feature-icon pink"><i class="fa-solid fa-arrows-rotate"></i></div>
-                <h3>Otomatik Guncelleme</h3>
-                <p>Ilk acilista yt-dlp motoru otomatik guncellenir. Her zaman en son destekler ve hiz duzeltmeleri.</p>
+                <div class="feature-icon pink"><i class="fa-solid fa-closed-captioning"></i></div>
+                <h3>Altyazı Desteği</h3>
+                <p>Videolarda bulunan gömülü veya harici altyazıları dilediğiniz dilde SRT formatında otomatik olarak indirin.</p>
             </div>
         </div>
     </section>
@@ -1392,174 +1346,142 @@
     <!-- HOW IT WORKS -->
     <section class="how-it-works" id="how-it-works">
         <div class="section-header">
-            <div class="section-tag"><i class="fa-solid fa-gears"></i> Nasil Calisir</div>
-            <h2>3 Adimda Indirme</h2>
-            <p>Karmaşık ayarlar yok. Tek yapmaniz gereken linki yapistirip butona basmak.</p>
+            <div class="section-tag"><i class="fa-solid fa-route"></i> Kolay Kullanım</div>
+            <h2>3 Adımda İndirmeye Başlayın</h2>
+            <p>Karmaşık ayarlarla uğraşmadan favori içeriklerinizi saniyeler içinde bilgisayarınıza kaydedin.</p>
         </div>
+
         <div class="steps-container">
             <div class="step-item">
-                <div class="step-number pink">1</div>
+                <div class="step-number pink">01</div>
                 <div class="step-content">
-                    <h3>Baglantiyi Yapistirin</h3>
-                    <p>YouTube, Facebook, TikTok, Instagram veya diger desteklenen bir siteden video/muzik baglantisini kopyalayin ve uygulama icindeki alana yapistirin. Oynatma listesi baglantilari da desteklenir.</p>
+                    <h3>Bağlantıyı Kopyalayın</h3>
+                    <p>İndirmek istediğiniz video veya müziğin adresini tarayıcınızdan kopyalayın (Örn: <code>https://www.youtube.com/watch?v=...</code>).</p>
                 </div>
             </div>
             <div class="step-item">
-                <div class="step-number purple">2</div>
+                <div class="step-number purple">02</div>
                 <div class="step-content">
-                    <h3>Format ve Kaliteyi Secin</h3>
-                    <p>Video mu muzik mi? 4K mi 720p mi? <code>MP3 320kbps</code>, <code>FLAC</code>, <code>MP4 4K</code> gibi seceneklerden istediginizi belirleyin. Tek tikla format degisimi.</p>
+                    <h3>NexusUltra'ya Yapıştırın ve Formatı Seçin</h3>
+                    <p>Uygulamayı açın, bağlantıyı ilgili alana yapıştırın. İster MP4 video çözünürlüğünü ister MP3 ses kalitesini belirleyin.</p>
                 </div>
             </div>
             <div class="step-item">
-                <div class="step-number cyan">3</div>
+                <div class="step-number cyan">03</div>
                 <div class="step-content">
-                    <h3>Indirmeyi Baslatin</h3>
-                    <p>"Indirmeyi Baslat" butonuna tiklayin. Canli ilerleme cubugu ile yuzde ve hiz bilgisini takip edin. Dosya tamamlandiginda otomatik olarak secilen klasore kaydedilir.</p>
+                    <h3>İndirmeyi Başlatın</h3>
+                    <p>"İndir" butonuna tıklayın. Medyanız yüksek hızda işlenecek ve belirttiğiniz hedef klasöre kaydedilecektir.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PLATFORMS -->
+    <!-- SUPPORTED PLATFORMS -->
     <section class="platforms" id="platforms">
         <div class="section-header">
-            <div class="section-tag"><i class="fa-solid fa-globe"></i> Platformlar</div>
-            <h2>Binlerce Site Destekleniyor</h2>
-            <p>yt-dlp'nin gucuyle dunyanin en populer icerik platformlarindan indirme yapin.</p>
+            <div class="section-tag"><i class="fa-solid fa-globe"></i> Geniş Platform Desteği</div>
+            <h2>1000'den Fazla Web Sitesi</h2>
+            <p>NexusUltra, popüler sosyal medya ağları ve video platformlarının yanı sıra binlerce siteden medya indirmenizi sağlar.</p>
         </div>
+
         <div class="platforms-grid">
             <div class="platform-card">
                 <div class="platform-icon" style="color: #ff0000;"><i class="fa-brands fa-youtube"></i></div>
                 <div>
                     <div class="platform-name">YouTube</div>
-                    <div class="platform-sub">Video, Muzik, Oynatma Listesi</div>
-                </div>
-            </div>
-            <div class="platform-card">
-                <div class="platform-icon" style="color: #1877f2;"><i class="fa-brands fa-facebook"></i></div>
-                <div>
-                    <div class="platform-name">Facebook</div>
-                    <div class="platform-sub">Video, Sayfa Videolari</div>
-                </div>
-            </div>
-            <div class="platform-card">
-                <div class="platform-icon" style="color: #ff0050;"><i class="fa-brands fa-tiktok"></i></div>
-                <div>
-                    <div class="platform-name">TikTok</div>
-                    <div class="platform-sub">Video, Ses, Slideshow</div>
+                    <div class="platform-sub">Video, Playlist, Shorts</div>
                 </div>
             </div>
             <div class="platform-card">
                 <div class="platform-icon" style="color: #e4405f;"><i class="fa-brands fa-instagram"></i></div>
                 <div>
                     <div class="platform-name">Instagram</div>
-                    <div class="platform-sub">Reels, Story, Post</div>
+                    <div class="platform-sub">Reels, Post, Story</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon" style="color: #00f2fe;"><i class="fa-brands fa-tiktok"></i></div>
+                <div>
+                    <div class="platform-name">TikTok</div>
+                    <div class="platform-sub">Filigransız HD Video</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon" style="color: #1877f2;"><i class="fa-brands fa-facebook"></i></div>
+                <div>
+                    <div class="platform-name">Facebook</div>
+                    <div class="platform-sub">Watch, Reels, Video</div>
+                </div>
+            </div>
+            <div class="platform-card">
+                <div class="platform-icon" style="color: #1da1f2;"><i class="fa-brands fa-twitter"></i></div>
+                <div>
+                    <div class="platform-name">X (Twitter)</div>
+                    <div class="platform-sub">Video & GIF İndirme</div>
                 </div>
             </div>
             <div class="platform-card">
                 <div class="platform-icon" style="color: #9146ff;"><i class="fa-brands fa-twitch"></i></div>
                 <div>
                     <div class="platform-name">Twitch</div>
-                    <div class="platform-sub">Yayin, Klip, VOD</div>
-                </div>
-            </div>
-            <div class="platform-card">
-                <div class="platform-icon" style="color: #1da1f2;"><i class="fa-brands fa-x-twitter"></i></div>
-                <div>
-                    <div class="platform-name">Twitter / X</div>
-                    <div class="platform-sub">Video, GIF, Ses</div>
-                </div>
-            </div>
-            <div class="platform-card">
-                <div class="platform-icon" style="color: #ff5500;"><i class="fa-brands fa-soundcloud"></i></div>
-                <div>
-                    <div class="platform-name">SoundCloud</div>
-                    <div class="platform-sub">Muzik, Podcast</div>
-                </div>
-            </div>
-            <div class="platform-card">
-                <div class="platform-icon" style="color: #1ed760;"><i class="fa-brands fa-spotify"></i></div>
-                <div>
-                    <div class="platform-name">Spotify</div>
-                    <div class="platform-sub">Linkler desteklenir</div>
-                </div>
-            </div>
-            <div class="platform-card">
-                <div class="platform-icon" style="color: #1ab7ea;"><i class="fa-brands fa-vimeo"></i></div>
-                <div>
-                    <div class="platform-name">Vimeo</div>
-                    <div class="platform-sub">Video, Film</div>
+                    <div class="platform-sub">Klips & VOD İçerikleri</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TECH SPECS -->
+    <!-- TECHNICAL SPECS -->
     <section class="specs" id="specs">
         <div class="section-header">
-            <div class="section-tag"><i class="fa-solid fa-microchip"></i> Teknik Detaylar</div>
-            <h2>Alt Yapinin Guveni</h2>
-            <p>Isletim sistemi ve donanim gereksinimleri hakkinda bilgi edinin.</p>
+            <div class="section-tag"><i class="fa-solid fa-microchip"></i> Sistem Gereksinimleri</div>
+            <h2>Teknik Detaylar</h2>
+            <p>Hafif yapısı sayesinde sisteminizi yormadan yüksek performans gösterir.</p>
         </div>
+
         <div class="specs-grid">
             <div class="spec-row">
                 <div class="spec-icon"><i class="fa-brands fa-windows"></i></div>
                 <div>
-                    <div class="spec-label">Isletim Sistemi</div>
-                    <div class="spec-value">Windows 10 / 11 (64-bit)</div>
+                    <div class="spec-label">İşletim Sistemi</div>
+                    <div class="spec-value">Windows 10 / Windows 11 (64-bit)</div>
                 </div>
             </div>
             <div class="spec-row">
-                <div class="spec-icon"><i class="fa-solid fa-code"></i></div>
+                <div class="spec-icon"><i class="fa-solid fa-box"></i></div>
                 <div>
-                    <div class="spec-label">Calisma Ortami</div>
-                    <div class="spec-value">.NET 8 Desktop Runtime</div>
+                    <div class="spec-label">Dosya Boyutu</div>
+                    <div class="spec-value">~48 MB</div>
                 </div>
             </div>
             <div class="spec-row">
-                <div class="spec-icon"><i class="fa-brands fa-edge"></i></div>
+                <div class="spec-icon"><i class="fa-solid fa-code-branch"></i></div>
                 <div>
-                    <div class="spec-label">Arayuz Motoru</div>
-                    <div class="spec-value">Microsoft Edge WebView2</div>
+                    <div class="spec-label">Sürüm</div>
+                    <div class="spec-value">v1.1.2 (Kararlı)</div>
                 </div>
             </div>
             <div class="spec-row">
-                <div class="spec-icon"><i class="fa-solid fa-download"></i></div>
+                <div class="spec-icon"><i class="fa-solid fa-file-invoice"></i></div>
                 <div>
-                    <div class="spec-label">Indirme Motoru</div>
-                    <div class="spec-value">yt-dlp (Acik Kaynak)</div>
-                </div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-icon"><i class="fa-solid fa-film"></i></div>
-                <div>
-                    <div class="spec-label">Video Islemci</div>
-                    <div class="spec-value">ffmpeg (Birlestirme)</div>
-                </div>
-            </div>
-            <div class="spec-row">
-                <div class="spec-icon"><i class="fa-solid fa-hard-drive"></i></div>
-                <div>
-                    <div class="spec-label">Kurulum Boyutu</div>
-                    <div class="spec-value">~80 MB (tam paket)</div>
+                    <div class="spec-label">Lisans</div>
+                    <div class="spec-value">Ücretsiz / Açık Desteğe Sahip</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- DOWNLOAD CTA -->
-    <section class="download-section" id="download">
+    <section class="download-section">
         <div class="download-box">
-            <h2>Hemen Indirmeye Baslayin</h2>
-            <p>NexusUltra ucretsizdir ve masaustunuze tek tikla kurulur. Hicbir kayit veya abonelik gerektirmez.</p>
-            <a href="https://github.com/00yusuf0912/nexusultra/releases/download/v1.1.2/NexusUltraSetup.exe" class="btn-primary" download style="display: inline-flex; margin: 0 auto; position: relative;">
-                <i class="fa-solid fa-download"></i> NexusUltraSetup.exe Indir (48 MB)
+            <h2>Hemen Ücretsiz İndirin</h2>
+            <p>NexusUltra'nın sunduğu hızlı ve kesintisiz medya indirme deneyimini keşfetmek için hemen kurulum dosyasını edinin.</p>
+            <a href="https://github.com/00yusuf0912/nexusultra/releases/download/v1.1.2/NexusUltraSetup.exe" class="btn-primary" style="margin: 0 auto;">
+                <i class="fa-solid fa-download"></i> Windows için İndir (NexusUltraSetup.exe)
             </a>
             <div class="download-info">
-                <div class="download-info-item"><i class="fa-solid fa-check-circle"></i> Ucretsiz ve acik kaynak</div>
-                <div class="download-info-item"><i class="fa-solid fa-check-circle"></i> Reklam yok, virussuz</div>
-                <div class="download-info-item"><i class="fa-solid fa-check-circle"></i> Windows 10/11</div>
+                <div class="download-info-item"><i class="fa-solid fa-check"></i> Virüs Taramasından Geçti</div>
+                <div class="download-info-item"><i class="fa-solid fa-check"></i> Kayıt Olmak Gerekmez</div>
+                <div class="download-info-item"><i class="fa-solid fa-check"></i> %100 Ücretsiz</div>
             </div>
         </div>
     </section>
@@ -1568,56 +1490,36 @@
     <section class="faq" id="faq">
         <div class="section-header">
             <div class="section-tag"><i class="fa-solid fa-circle-question"></i> SSS</div>
-            <h2>Sikca Sorulan Sorular</h2>
+            <h2>Sıkça Sorulan Sorular</h2>
         </div>
 
-        <div class="faq-item open">
+        <div class="faq-item">
             <div class="faq-question">
-                <h3>NexusUltra ucretsiz mi?</h3>
+                <h3>NexusUltra tamamen ücretsiz mi?</h3>
                 <div class="faq-toggle"><i class="fa-solid fa-plus"></i></div>
             </div>
             <div class="faq-answer">
-                <p>Evet, NexusUltra tamamen ucretsizdir. Hicbir abonelik ucreti, gizlicret veya premium versiyonu yoktur. Acik kaynak olarak gelistirilmistir.</p>
+                <p>Evet, NexusUltra tamamen ücretsizdir. Herhangi bir abonelik, gizli ücret veya indirme sınırı bulunmamaktadır.</p>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                <h3>Hangi siteler destekleniyor?</h3>
+                <h3>Videoları MP3 olarak indirebilir miyim?</h3>
                 <div class="faq-toggle"><i class="fa-solid fa-plus"></i></div>
             </div>
             <div class="faq-answer">
-                <p>yt-dlp motoru sayesinde YouTube, Facebook, TikTok, Instagram, Twitter/X, Twitch, SoundCloud, Vimeo ve 1000'den fazla site desteklenmektedir.</p>
+                <p>Kesinlikle. Bağlantıyı yapıştırdıktan sonra indirme seçeneği olarak MP3 ses formatını seçebilir, 320 kbps'ye kadar yüksek kalitede ses elde edebilirsiniz.</p>
             </div>
         </div>
 
         <div class="faq-item">
             <div class="faq-question">
-                <h3>En yuksek kalite secenegi nedir?</h3>
+                <h3>Yazılım güvenli mi? Windows Defender uyarı verir mi?</h3>
                 <div class="faq-toggle"><i class="fa-solid fa-plus"></i></div>
             </div>
             <div class="faq-answer">
-                <p>4K Ultra HD (2160p) video ve 320kbps MP3 / FLAC kayipsiz muzik indirme desteklenmektedir. Mevcut kalite orijinal icerige baglidir.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question">
-                <h3>Windows disinda calisir mi?</h3>
-                <div class="faq-toggle"><i class="fa-solid fa-plus"></i></div>
-            </div>
-            <div class="faq-answer">
-                <p>Su an icin yalnizca Windows 10/11 (64-bit) desteklenmektedir. Uygulama WPF uzerine kuruludur ve .NET 8 gerektirir.</p>
-            </div>
-        </div>
-
-        <div class="faq-item">
-            <div class="faq-question">
-                <h3>Kurulum sirasinda .NET 8 hatasi aliyorum, ne yapmaliyim?</h3>
-                <div class="faq-toggle"><i class="fa-solid fa-plus"></i></div>
-            </div>
-            <div class="faq-answer">
-                <p>Kurulum sihirbazi otomatik olarak .NET 8'i indirip kuracaktir. Eger otomatik kurulum basarisiz olursa, https://dotnet.microsoft.com/download/dotnet/8.0 adresinden elle kurabilirsiniz.</p>
+                <p>Uygulamamız tamamen güvenlidir. Yeni yayınlanan kurulum dosyalarında Windows SmartScreen zaman zaman bilinmeyen yayıncı uyarısı verebilir. "Yine de çalıştır" seçeneği ile güvenle kurabilirsiniz.</p>
             </div>
         </div>
     </section>
@@ -1627,92 +1529,66 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <a href="#" class="nav-brand">
-                    <div class="nav-logo"><i class="fa-solid fa-bolt-lightning"></i></div>
+                    <div class="nav-logo">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
                     <span class="nav-brand-text">NexusUltra</span>
                 </a>
-                <p>Windows icin modern, hizli ve guvenilir video & muzik indirici. Turkiye'den sevgiyle yapildi.</p>
+                <p>Medyalarınızı en yüksek kalitede ve en hızlı şekilde bilgisayarınıza indirmeniz için tasarlanmış modern masaüstü yazılımı.</p>
             </div>
             <div class="footer-col">
-                <h4>Urun</h4>
-                <a href="#features">Ozellikler</a>
-                <a href="#how-it-works">Nasil Calisir</a>
-                <a href="#download">Indir</a>
-                <a href="#specs">Teknik Detaylar</a>
+                <h4>Hızlı Bağlantılar</h4>
+                <a href="#features">Özellikler</a>
+                <a href="#how-it-works">Nasıl Çalışır?</a>
+                <a href="#platforms">Desteklenen Siteler</a>
             </div>
             <div class="footer-col">
-                <h4>Destek</h4>
-                <a href="#faq">SSS</a>
-                <a href="#">Sorun Bildir</a>
-                <a href="#">Iletisim</a>
+                <h4>Detaylar</h4>
+                <a href="#specs">Sistem Gereksinimleri</a>
+                <a href="#faq">Sıkça Sorulan Sorular</a>
+                <a href="https://github.com/00yusuf0912/nexusultra" target="_blank">GitHub Projesi</a>
             </div>
             <div class="footer-col">
-                <h4>Yasal</h4>
-                <a href="#">Gizlilik Politikasi</a>
-                <a href="#">Kullanim Kosullari</a>
-                <a href="#">Lisans</a>
+                <h4>İletişim & Topluluk</h4>
+                <a href="https://github.com/00yusuf0912" target="_blank">GitHub</a>
+                <a href="https://00yusuf0912.github.io/nexusultra/" target="_blank">Resmi Web Sitesi</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <span>&copy; 2026 NexusUltra. Tum haklari saklidir.</span>
+            <span>&copy; 2026 NexusUltra. Tüm hakları saklıdır.</span>
             <div class="footer-socials">
-                <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="https://github.com/00yusuf0912" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" aria-label="Globe"><i class="fa-solid fa-globe"></i></a>
             </div>
         </div>
     </footer>
 
+    <!-- JAVASCRIPT -->
     <script>
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
+        // Navbar scroll background change
         window.addEventListener('scroll', () => {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         });
 
-        // Mobile menu
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('open');
-        });
+        // FAQ Toggle Logic
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isOpen = item.classList.contains('open');
 
-        // Close mobile menu on link click
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('open');
-            });
-        });
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
 
-        // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => {
-                const item = q.parentElement;
-                const wasOpen = item.classList.contains('open');
-                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-                if (!wasOpen) item.classList.add('open');
-            });
-        });
-
-        // Scroll reveal animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                // Open clicked item if it wasn't open
+                if (!isOpen) {
+                    item.classList.add('open');
                 }
             });
-        }, observerOptions);
-
-        document.querySelectorAll('.feature-card, .step-item, .platform-card, .spec-row, .faq-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(el);
         });
     </script>
 </body>
